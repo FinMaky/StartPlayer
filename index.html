@@ -1,10 +1,84 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fi">
 <head>
   <meta charset="UTF-8" />
   <title>Start Player</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 100px);
+      grid-gap: 10px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .color {
+      width: 100px;
+      height: 100px;
+      border: 2px solid transparent;
+      cursor: pointer;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2em;
+      font-weight: bold;
+      user-select: none;
+    }
+    .color.selected {
+      border-color: #000;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-  Start Player
+  <h1>Start Player</h1>
+  <div class="grid">
+    <div class="color" data-color="red" style="background:red;color:white;"></div>
+    <div class="color" data-color="blue" style="background:blue;color:white;"></div>
+    <div class="color" data-color="green" style="background:green;color:white;"></div>
+    <div class="color" data-color="yellow" style="background:yellow;color:black;"></div>
+    <div class="color" data-color="black" style="background:black;color:white;"></div>
+    <div class="color" data-color="white" style="background:white;color:black;border:2px solid #ccc;"></div>
+    <div class="color" data-color="purple" style="background:purple;color:white;"></div>
+    <div class="color" data-color="orange" style="background:orange;color:black;"></div>
+    <div class="color" data-color="pink" style="background:pink;color:white;"></div>
+  </div>
+  <button id="draw">Arvo</button>
+
+  <script>
+    const squares = document.querySelectorAll('.color');
+
+    squares.forEach(square => {
+      square.addEventListener('click', () => {
+        square.classList.toggle('selected');
+        square.textContent = '';
+      });
+    });
+
+    function shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    }
+
+    document.getElementById('draw').addEventListener('click', () => {
+      const selected = Array.from(document.querySelectorAll('.color.selected'));
+      selected.forEach(el => el.textContent = '');
+      shuffle(selected);
+      selected.forEach((el, index) => {
+        el.textContent = index + 1;
+      });
+    });
+  </script>
 </body>
 </html>
