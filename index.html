@@ -19,7 +19,6 @@
     .color {
       width: 100px;
       height: 100px;
-      border: 2px solid transparent;
       cursor: pointer;
       position: relative;
       display: flex;
@@ -28,36 +27,43 @@
       font-size: 2em;
       font-weight: bold;
       user-select: none;
+    }
+    .button-3d {
+      border: 2px solid transparent;
       border-radius: 15px;
       box-shadow: 0 4px 0 rgba(0, 0, 0, 0.4);
       transition: box-shadow 0.1s, transform 0.1s;
     }
-    .color.selected {
-      border-color: #000;
+    .button-3d:active,
+    .button-3d.selected {
       transform: translateY(4px);
       box-shadow: inset 0 4px 0 rgba(0, 0, 0, 0.4);
     }
+    .color.selected {
+      border-color: #000;
+    }
     #draw {
-      width: 100px;
-      height: 100px;
+      padding: 10px 20px;
       cursor: pointer;
+      font-size: 1em;
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
   <h1>Start Player</h1>
   <div class="grid">
-    <div class="color" data-color="red" style="background:red;color:white;"></div>
-    <div class="color" data-color="blue" style="background:blue;color:white;"></div>
-    <div class="color" data-color="green" style="background:green;color:white;"></div>
-    <div class="color" data-color="yellow" style="background:yellow;color:black;"></div>
-    <div class="color" data-color="black" style="background:black;color:white;"></div>
-    <div class="color" data-color="white" style="background:white;color:black;border:2px solid #ccc;"></div>
-    <div class="color" data-color="purple" style="background:purple;color:white;"></div>
-    <div class="color" data-color="orange" style="background:orange;color:black;"></div>
-    <div class="color" data-color="pink" style="background:pink;color:white;"></div>
+    <div class="color button-3d" data-color="red" style="background:red;color:white;"></div>
+    <div class="color button-3d" data-color="blue" style="background:blue;color:white;"></div>
+    <div class="color button-3d" data-color="green" style="background:green;color:white;"></div>
+    <div class="color button-3d" data-color="yellow" style="background:yellow;color:black;"></div>
+    <div class="color button-3d" data-color="black" style="background:black;color:white;"></div>
+    <div class="color button-3d" data-color="white" style="background:white;color:black;border:2px solid #ccc;"></div>
+    <div class="color button-3d" data-color="purple" style="background:purple;color:white;"></div>
+    <div class="color button-3d" data-color="orange" style="background:orange;color:black;"></div>
+    <div class="color button-3d" data-color="pink" style="background:pink;color:white;"></div>
   </div>
-  <img id="draw" src="dice.svg" alt="Heitä noppa" />
+  <button id="draw" class="button-3d" type="button">Randomize selected colors</button>
   <script>
     const squares = document.querySelectorAll('.color');
 
